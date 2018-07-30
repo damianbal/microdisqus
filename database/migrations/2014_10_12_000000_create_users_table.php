@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->boolean('display_signature')->default(false);
             $table->string('color')->default('purple');
             $table->boolean('banned')->default(false);
+            $table->boolean('admin')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

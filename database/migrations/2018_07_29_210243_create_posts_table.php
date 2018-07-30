@@ -15,6 +15,13 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
+            $table->text('content');
+            $table->string('image')->nullable();
+            $table->integer('user_id');
+            $table->boolean('highlighted')->default(false);
+            $table->integer('tag_id');
+            $table->integer('post_id')->default(0); // 0 means that it is a main post
+            $table->boolean('comment')->default(false);
             $table->timestamps();
         });
     }
