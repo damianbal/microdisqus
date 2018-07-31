@@ -10,13 +10,13 @@ class SignUpController extends Controller
 {
     public function show()
     {
-        //
+        return view('sign-up.show');
     }
 
     public function submit(Request $request)
     {
         $data = $request->validate([
-            'name' => 'min:3|required',
+            'name' => 'min:3|required|unique:users',
             'email' => 'min:3|email|unique:users|required',
             'password' => 'min:3|required',
         ]);

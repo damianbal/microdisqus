@@ -3,6 +3,13 @@
 $body-bg: #f5f8fa;
 
 // Typography
-$font-family-sans-serif: "Raleway", sans-serif;
-$font-size-base: 0.9rem;
-$line-height-base: 1.6;
+$font-family-sans-serif: "Nunito", sans-serif;
+
+// ##4650DA
+$body-color:                rgb(120,120,120);
+
+$border-radius:               .35rem !default;
+
+$theme-colors: (
+  "primary":#4650DA,
+);

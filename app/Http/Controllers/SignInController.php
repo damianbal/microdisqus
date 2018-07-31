@@ -9,7 +9,7 @@ class SignInController extends Controller
 {
     public function show()
     {
-
+        return view('sign-in.show');
     }
 
     public function submit(Request $request)
@@ -20,10 +20,17 @@ class SignInController extends Controller
         ]);
 
         if(Auth::attempt(['email' => $data['email'], 'password' => $data['password']])) {
-            return ['jest git'];
+            
         }
         else {
-            return ['wrong!'];
+            
         }
+    }
+
+    public function signOut() 
+    {
+        Auth::logout();
+
+        return back()->with('message', 'You have been signed out!');
     }
 }

@@ -1,6 +1,6 @@
 
 // Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@import url('https://fonts.googleapis.com/css?family=Nunito:300,400');
 
 // Variables
 @import "variables";
@@ -8,7 +8,41 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-.navbar-laravel {
-  background-color: #fff;
+.navbar-custom {
+  background-color:theme-color("primary");
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.header {
+
+}
+
+.header a {
+  color:rgba(255,255,255,0.5);
+  text-decoration: none;
+  transition: 0.5s;
+}
+.header a:hover {
+  text-decoration: none;
+  transition: 0.5s;
+  color:#fff;
+}
+
+.custom-nav a {
+  color: rgba(255,255,255,0.85);
+  transition: 0.5s;
+}
+.custom-nav a:hover {
+  color: rgba(255,255,255,0.5) !important;
+  transition: 0.5s;
+
+}
+
+.section {
+
+}
+
+/** Post **/
+.post {
+
 }

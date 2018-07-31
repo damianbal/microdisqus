@@ -12,9 +12,12 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        $sort = $request->input('sort', 'recent'); // popular 
+
+        
     }
 
     /**
