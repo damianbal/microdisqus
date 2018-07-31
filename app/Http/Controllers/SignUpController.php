@@ -24,5 +24,7 @@ class SignUpController extends Controller
         $data['password'] = Hash::make($data['password']);
 
         $user = User::create($data);
+
+        return redirect()->route('sign-in.show')->with('message', 'Your account has been created!');
     }
 }

@@ -465,7 +465,7 @@ hr {
 
 small,
 .small {
-  font-size: 80%;
+  font-size: 12px;
   font-weight: 400;
 }
 
@@ -2426,7 +2426,7 @@ textarea.form-control {
   display: none;
   width: 100%;
   margin-top: 0.25rem;
-  font-size: 80%;
+  font-size: 12px;
   color: #28a745;
 }
 
@@ -2550,7 +2550,7 @@ textarea.form-control {
   display: none;
   width: 100%;
   margin-top: 0.25rem;
-  font-size: 80%;
+  font-size: 12px;
   color: #dc3545;
 }
 
@@ -10504,4 +10504,9 @@ a.text-dark:focus {
 }
 
 /** Post **/
+
+.post-meta {
+  font-size: 12px;
+  color: #c8c8c8 !important;
+}
 

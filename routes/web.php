@@ -5,7 +5,7 @@
  * Index
  * ---------------------------------------
  */
-Route::get('/', 'IndexController@index');
+Route::get('/', 'IndexController@index')->name('home');
 
 /**
  * ---------------------------------------
@@ -22,6 +22,7 @@ Route::post('/sign-up', 'SignUpController@submit')->name('sign-up.submit');
  */
 Route::get('/sign-in', 'SignInController@show')->name('sign-in.show');
 Route::post('/sign-in', 'SignInController@submit')->name('sign-in.submit');
+Route::get('/sign-out', 'SignInController@signOut')->name('sign-out');
 
 /**
  * ---------------------------------------
@@ -30,3 +31,5 @@ Route::post('/sign-in', 'SignInController@submit')->name('sign-in.submit');
  */
 Route::post('/posts', 'PostsController@store')->name('posts.store');
 Route::get('/posts/{post}', 'PostsController@show')->name('posts.show');
+Route::get('/posts/{post}/like', 'PostsController@like')->name('posts.like');
+Route::get('/posts/{post}/unlike', 'PostsController@unlike')->name('posts.unlike');

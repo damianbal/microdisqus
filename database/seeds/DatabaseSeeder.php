@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use App\User;
 use App\Post;
 use App\Like;
+use App\Tag;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,10 +17,14 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
 
+        $tag = Tag::create([
+            'name' => ''
+        ]);
+
         // create user
         $damian = User::create([
             'name' => 'Damian',
-            'password' => bcrypt('damiandamian'),
+            'password' => bcrypt('damian'),
             'admin' => true,
             'email' => 'damian@damianbalandowski.com',
         ]);
@@ -28,7 +33,7 @@ class DatabaseSeeder extends Seeder
         $post = Post::create([
             'content' => 'This is first post on that site, yup!',
             'user_id' => $damian->id,
-            'tag_id' => 3
+            'tag_id' => $tag->id
         ]);
 
         // add the like 

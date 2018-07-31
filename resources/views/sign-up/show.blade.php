@@ -3,11 +3,11 @@
 <div class="card mx-auto w-50 bg-light p-1">
     <div class="card-body">
         <form method="POST" action="{{ route('sign-up.submit') }}">
-                <div class="form-group">
-                        <label>Name</label>
-                        <input class="form-control" type="text" placeholder="Your name" name="name" minlength="3" required>
-                        <small class="text-muted">This will be your display name</small>
-                    </div>
+            <div class="form-group">
+                <label>Name</label>
+                <input class="form-control" type="text" placeholder="Your name" name="name" minlength="3" required>
+                <small class="text-muted">This will be your display name</small>
+            </div>
 
             <div class="form-group">
                 <label>Email</label>

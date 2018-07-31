@@ -3,10 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Services\PostService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostsController extends Controller
 {
+    protected $postService;
+
+    public function __construct(PostService $postService)
+    {
+        $this->postService = $postService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,9 +24,8 @@ class PostsController extends Controller
     public function index(Request $request)
     {
         //
-        $sort = $request->input('sort', 'recent'); // popular 
+        $sort = $request->input('sort', 'recent'); // popular
 
-        
     }
 
     /**
@@ -39,12 +47,17 @@ class PostsController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'content' => 'min:3|required'
+            'content' => 'min:3|required',
+            'tag' => 'min:3|required'
         ]);
 
-        $data['user_id'] = $request->user()->id;
+        $data['tag'] = strtolower($data['tag']);
 
-        $post = Post::create($data);
+        $this->postService->setup(null, Auth::user());
+
+        $post = $this->postService->addPost($data['tag'], $data['content']);
+
+        return redirect()->route('post.show', [$post->id])->with('message', 'Post created!');
     }
 
     /**
@@ -55,7 +68,16 @@ class PostsController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        $liked = false;
+
+        // is it liked by signed in user?
+        if (Auth::check()) {
+            $this->postService->setup($post, Auth::user());
+
+            $liked = $this->postService->liked();
+        }
+
+        return view('posts.show', ['post' => $post, 'liked' => $liked]);
     }
 
     /**
@@ -90,5 +112,19 @@ class PostsController extends Controller
     public function destroy(Post $post)
     {
         //
+    }
+
+    public function like(Post $post)
+    {
+        $this->postService->setup($post, Auth::user());
+        $this->postService->like();
+        return back();
+    }
+
+    public function unlike(Post $post)
+    {
+        $this->postService->setup($post, Auth::user());
+        $this->postService->unlike();
+        return back();
     }
 }
