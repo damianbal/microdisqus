@@ -24,4 +24,9 @@ class Post extends Model
     {
         return $this->hasMany('App\Like', 'post_id');
     }
+
+    public function tag()
+    {
+        return $this->belongsTo('App\Tag', 'tag_id');
+    }
 }

@@ -27,7 +27,7 @@ class PostService
      */
     public function addPost($tag, $content)
     {
-        $t = Tag::findOrCreate(['name' => $tag]);
+
 
         $t = Tag::where('name', $tag)->first();
 

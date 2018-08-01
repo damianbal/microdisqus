@@ -57,7 +57,7 @@ class PostsController extends Controller
 
         $post = $this->postService->addPost($data['tag'], $data['content']);
 
-        return redirect()->route('post.show', [$post->id])->with('message', 'Post created!');
+        return redirect()->route('posts.show', [$post->id])->with('message', 'Post created!');
     }
 
     /**

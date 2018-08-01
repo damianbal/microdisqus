@@ -18,3 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/posts/recent', 'API\\PostsController@recent');
+Route::get('/likes/recent', 'API\\LikesController@recent');
