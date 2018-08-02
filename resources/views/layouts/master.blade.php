@@ -11,35 +11,29 @@
 </head>
 <body>
 <div id="app">
-    <div class="bg-primary mb-3">
-        <div class="container">
-            <div class="row header ">
-                <div class="col-sm-12">
- 
-                <a href="{{ route('home') }}">MicroDisqus</a>
-                </div>
-            </div>
-            <div class="row "> 
-                <div class="col-sm-6">
-                        <nav class="nav custom-nav">
-                                <a class="nav-link active" href="#">Popular</a>
-                                <a class="nav-link" href="#">Recent</a>
-                        </nav>
-                </div>
-                <div class="col-sm-6">
-                        <nav class="nav custom-nav justify-content-end">
-                            @guest
-                         <a class="nav-link" href="{{ route('sign-in.show') }}">Sign in</a>
-                         @endguest
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="{{ route('home') }}">MD</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="#">Features</a>
+            <a class="nav-item nav-link" href="#">Pricing</a>
+            <a class="nav-item nav-link disabled" href="#">Disabled</a>
+          </div>
 
-                         @auth
-                            <a class="nav-link" href="{{ route('sign-out') }}"><i class="fas fa-sign-out-alt"></i> Sign out ({{ Auth::user()->name }})</a>
-                         @endauth
-                        </nav>
-                </div>
-            </div>
+          <div class="navbar-nav ml-auto">
+            @guest
+                 <a href="{{ route('sign-in.show') }}" class="nav-item nav-link">Sign in</a>
+            @endguest
+            @auth
+                 <a href="{{ route('sign-out') }}" class="nav-item nav-link">Sign out ({{ Auth::user()->name }})</a>
+            @endauth
+          </div>
         </div>
-    </div>
+      </nav>
 
     <div class="container">
             @if ($errors->any())

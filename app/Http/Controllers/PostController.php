@@ -7,7 +7,7 @@ use App\Services\PostService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class PostsController extends Controller
+class PostController extends Controller
 {
     protected $postService;
 
@@ -48,16 +48,20 @@ class PostsController extends Controller
     {
         $data = $request->validate([
             'content' => 'min:3|required',
-            'tag' => 'min:3|required'
         ]);
 
-        $data['tag'] = strtolower($data['tag']);
+        $tag = $request->input('tag');
+        
+        // does form have input post_id? if yes, then we creating sub post for post with post_id
+        if($request->has('post_id')) {
+            $post = Post::find($request->post_id);
+            $this->postService->setup($post);
+            $tag = $post->tag->name;
+        }
 
-        $this->postService->setup(null, Auth::user());
+        $post = $this->postService->addPost(Auth::user(), $tag, $data['content']);
 
-        $post = $this->postService->addPost($data['tag'], $data['content']);
-
-        return redirect()->route('posts.show', [$post->id])->with('message', 'Post created!');
+        return redirect()->route('posts.show', [$request->post_id])->with('message', 'Post created!');
     }
 
     /**
@@ -72,9 +76,9 @@ class PostsController extends Controller
 
         // is it liked by signed in user?
         if (Auth::check()) {
-            $this->postService->setup($post, Auth::user());
+            $this->postService->setup($post);
 
-            $liked = $this->postService->liked();
+            $liked = $this->postService->liked(Auth::user());
         }
 
         return view('posts.show', ['post' => $post, 'liked' => $liked]);
@@ -116,15 +120,15 @@ class PostsController extends Controller
 
     public function like(Post $post)
     {
-        $this->postService->setup($post, Auth::user());
-        $this->postService->like();
+        $this->postService->setup($post);
+        $this->postService->like(Auth::user());
         return back();
     }
 
     public function unlike(Post $post)
     {
-        $this->postService->setup($post, Auth::user());
-        $this->postService->unlike();
+        $this->postService->setup($post);
+        $this->postService->unlike(Auth::user());
         return back();
     }
 }

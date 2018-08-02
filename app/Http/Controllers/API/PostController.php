@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Post;
 
-class PostsController extends Controller
+class PostController extends Controller
 {
     /**
      * Return recent posts

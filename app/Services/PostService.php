@@ -10,12 +10,10 @@ use App\Tag;
 class PostService
 {
     protected $post = null;
-    protected $user = null;
 
-    public function setup($post, $user = null)
+    public function setup($post)
     {
         $this->post = $post;
-        $this->user = $user;
     }
 
     /**
@@ -25,10 +23,8 @@ class PostService
      * @param [type] $content
      * @return void
      */
-    public function addPost($tag, $content)
+    public function addPost(User $user, $tag, $content)
     {
-
-
         $t = Tag::where('name', $tag)->first();
 
         if($t == null) {
@@ -39,7 +35,7 @@ class PostService
         if($this->post != null) {
             $post = Post::create([
                 'content' => $content,
-                'user_id' => $this->user->id,
+                'user_id' => $user->id,
                 'tag_id' => $t->id,
                 'comment' => true,
                 'post_id' => $this->post->id
@@ -48,7 +44,7 @@ class PostService
         else {
             $post = Post::create([
                 'content' => $content,
-                'user_id' => $this->user->id,
+                'user_id' => $user->id,
                 'tag_id' => $t->id,
                 'comment' => false,
             ]);
@@ -62,12 +58,12 @@ class PostService
      *
      * @return void
      */
-    public function liked()
+    public function liked(User $user)
     {
         // find like
         $like = Like::where([
             ['post_id', '=', $this->post->id],
-            ['user_id', '=', $this->user->id],
+            ['user_id', '=', $user->id],
         ])->first();
 
         if ($like == null) {
@@ -82,10 +78,10 @@ class PostService
      *
      * @return boolean
      */
-    public function like()
+    public function like(User $user)
     {
-        if (!$this->liked()) {
-            Like::create(['post_id' => $this->post->id, 'user_id' => $this->user->id]);
+        if (!$this->liked($user)) {
+            Like::create(['post_id' => $this->post->id, 'user_id' => $user->id]);
             return true;
         }
 
@@ -97,12 +93,12 @@ class PostService
      *
      * @return boolean
      */
-    public function unlike()
+    public function unlike(User $user)
     {
-        if ($this->liked()) {
+        if ($this->liked($user)) {
             $like = Like::where([
                 ['post_id', '=', $this->post->id],
-                ['user_id', '=', $this->user->id],
+                ['user_id', '=', $user->id],
             ])->delete();
 
             return true;

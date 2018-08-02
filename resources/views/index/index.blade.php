@@ -4,6 +4,7 @@
 @auth
 <div class="mb-3">
     <form method="POST" action="{{ route('posts.store') }}">
+        @csrf
         <div class="form-group">
             <textarea class="form-control from-control-sm" name="content"></textarea>
         </div>

@@ -12,12 +12,22 @@ class Post extends Model
      * @var array
      */
     protected $fillable = [
-        'content', 'tag_id', 'user_id'
+        'content', 'tag_id', 'user_id', 'post_id'
     ];    
+
+    public function scopeComments($q)
+    {
+        $q->where('comment', true);
+    }
 
     public function user()
     {
         return $this->belongsTo('App\User', 'user_id');
+    }
+
+    public function posts()
+    {
+        return $this->hasMany('App\Post', 'post_id');
     }
 
     public function likes()

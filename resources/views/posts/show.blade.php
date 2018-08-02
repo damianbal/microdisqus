@@ -34,4 +34,27 @@
             @endauth
         </div>
     </div>
+
+    <div class="replies">
+
+    </div>
+
+    <div class="border p-1 rounded">
+    <form method="POST" action="{{ route('posts.store') }}">
+        @csrf
+            <div class="form-group">
+                <textarea class="form-control from-control-sm" name="content"></textarea>
+            </div>
+        <input name="post_id" value="{{ $post->id }}" type="hidden">
+            <div class="form-group row">
+    
+                <div class="col-sm-12">
+                    <button class="btn btn-sm btn-secondary" type="submit"><i class="fas fa-plus-circle"></i> Send</button>
+    
+                </div>
+    
+            </div>
+    
+        </form>
+    </div>
 @endsection
