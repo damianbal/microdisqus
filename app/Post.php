@@ -15,9 +15,15 @@ class Post extends Model
         'content', 'tag_id', 'user_id', 'post_id'
     ];    
 
+
     public function scopeComments($q)
     {
         $q->where('comment', true);
+    }
+
+    public function scopePosts($q)
+    {
+        $q->where('comment', false);
     }
 
     public function user()
@@ -25,7 +31,7 @@ class Post extends Model
         return $this->belongsTo('App\User', 'user_id');
     }
 
-    public function posts()
+    public function replies()
     {
         return $this->hasMany('App\Post', 'post_id');
     }

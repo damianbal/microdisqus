@@ -9,13 +9,15 @@ class IndexController extends Controller
 {
     public function recent()
     {
-        $posts = Post::where('comment', false)->latest()->paginate(10);
+        $posts = Post::posts()->latest()->paginate(10);
 
-        return view('index.index', ['posts' => $posts]);
+        return view('index.index', ['posts' => $posts, 'title' => 'Recent posts']);
     }
 
     public function popular()
     {
+        $posts = Post::posts()->withCount('likes')->orderBy('likes_count', 'DESC')->paginate(10);
 
+        return view('index.index', ['posts' => $posts, 'title' => 'Posts with most likes']);
     }
 }

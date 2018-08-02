@@ -1,5 +1,13 @@
 @extends('layouts.master') 
+
+
+@section('title')
+{{ $title ?? 'Posts' }}
+@endsection
+
 @section('content')
+
+
 
 @auth
 <div class="mb-3">

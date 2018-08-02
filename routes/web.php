@@ -5,7 +5,7 @@
  * Index
  * ---------------------------------------
  */
-Route::get('/', 'IndexController@recent')->name('index.recent');
+Route::get('/', 'IndexController@recent')->name('home');
 Route::get('/popular', 'IndexController@popular')->name('index.popular');
  
 /**

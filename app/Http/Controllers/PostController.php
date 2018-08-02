@@ -53,6 +53,7 @@ class PostController extends Controller
         $tag = $request->input('tag');
         
         // does form have input post_id? if yes, then we creating sub post for post with post_id
+        $this->postService->setup(null);
         if($request->has('post_id')) {
             $post = Post::find($request->post_id);
             $this->postService->setup($post);
@@ -61,7 +62,7 @@ class PostController extends Controller
 
         $post = $this->postService->addPost(Auth::user(), $tag, $data['content']);
 
-        return redirect()->route('posts.show', [$request->post_id])->with('message', 'Post created!');
+        return back();
     }
 
     /**
@@ -81,7 +82,7 @@ class PostController extends Controller
             $liked = $this->postService->liked(Auth::user());
         }
 
-        return view('posts.show', ['post' => $post, 'liked' => $liked]);
+        return view('posts.show', ['post' => $post, 'liked' => $liked, 'postService' => $this->postService]);
     }
 
     /**

@@ -18,10 +18,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="#">Features</a>
-            <a class="nav-item nav-link" href="#">Pricing</a>
-            <a class="nav-item nav-link disabled" href="#">Disabled</a>
+     
+          <a class="nav-item nav-link" href="{{ route('index.popular') }}">Popular</a>
           </div>
 
           <div class="navbar-nav ml-auto">
@@ -60,7 +58,12 @@
     </div>
 
     <div class="container bg-white shadow-sm  rounded">
-        <div class="row p-3">
+        <div class="row bg-secondary mb-1 p-1">
+            <div class="col-12">
+                @yield('title', 'Title')
+            </div>
+        </div>
+        <div class="row p-1">
             <div class="col-sm-12">
                     @yield('content', '')
             </div>

@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('title')
+Post
+@endsection
+
 @section('content')
 <div class="post mb-3">
         <div class="post-meta row text-muted font-weight-light">
@@ -35,8 +39,23 @@
         </div>
     </div>
 
+    <div class="replies-heading bg-primary text-white p-3 rounded">Replies</div>
     <div class="replies">
+        @foreach($post->replies as $reply) 
+        <div>
+            This is reply: {{ $reply->content }}, it has {{ $reply->likes->count() }}
 
+            @auth
+                {{ $postService->setup($reply) }}
+                @if(!$postService->liked(Auth::user()))
+                    <a href="{{ route('posts.like', $reply->id) }}" class="btn btn-sm btn-primary"><i class="fas fa-thumbs-up"></i></a>
+                @else
+                    <a href="{{ route('posts.unlike', $reply->id) }}" class="btn btn-sm btn-secondary"><i class="fas fa-thumbs-down"></i></a>
+                @endif
+            @endauth
+
+        </div>
+        @endforeach
     </div>
 
     <div class="border p-1 rounded">
