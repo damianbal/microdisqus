@@ -7,6 +7,9 @@ use App\Post;
 use App\User;
 use App\Tag;
 
+
+use Illuminate\Http\Request;
+
 class PostService
 {
     protected $post = null;
@@ -15,6 +18,15 @@ class PostService
     {
         $this->post = $post;
     }
+
+    public function handleImageUpload(Request $request) 
+    {
+        if($request->hasFile('image')) {
+            $this->post->image = $request->image->store('images');
+            $this->post->save();
+        }
+    }
+
 
     /**
      * Create post, if post is set post is going to be created as sub post for $this->post

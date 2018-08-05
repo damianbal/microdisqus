@@ -1,6 +1,11 @@
 @extends('layouts.master') 
+
+@section('title')
+@lang('md.sign_in')
+@endsection
+
 @section('content')
-<div class="card mx-auto w-50 bg-light p-1">
+<div class="card mx-auto w-100 bg-light p-2 mb-3 mt-3">
     <div class="card-body">
         <form method="POST" action="{{ route('sign-in.submit') }}">
             <div class="form-group">

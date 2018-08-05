@@ -17,6 +17,6 @@ class Tag extends Model
 
     public function posts()
     {
-        return $this->hasMany('App\Post', 'tag_id');
+        return $this->hasMany('App\Post', 'tag_id')->posts();
     }
 }

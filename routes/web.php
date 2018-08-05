@@ -1,5 +1,7 @@
 <?php
 
+
+
 /**
  * ---------------------------------------
  * Index
@@ -14,7 +16,7 @@ Route::get('/popular', 'IndexController@popular')->name('index.popular');
  * ---------------------------------------
  */
 Route::get('/sign-up', 'SignUpController@show')->name('sign-up.show');
-Route::post('/sign-up', 'SignUpController@submit')->name('sign-up.submit');
+Route::post('/sign-up', 'SignUpController@submit')->name('sign-up.submit')->middleware('auth');
 
 /**
  * ---------------------------------------
@@ -40,5 +42,12 @@ Route::get('/posts/{post}/unlike', 'PostController@unlike')->name('posts.unlike'
  * Tag
  * ---------------------------------------
  */
-Route::get('/tags/{tag}', 'TagController@recent')->name('tags.recent');
+Route::get('/tags/{tag}', 'TagController@show')->name('tags');
 Route::get('/tags/{tag}/popular', 'TagController@popular')->name('tags.popular');
+
+/**
+ * ---------------------------------------
+ * User
+ * ---------------------------------------
+ */
+Route::get('/users/{user}', 'UserController@show')->name('users.show');

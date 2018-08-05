@@ -11,8 +11,9 @@ $body-color:                rgb(120,120,120);
 $border-radius:               .35rem !default;
 
 $theme-colors: (
-  "primary":#4650DA,
-  "secondary": #C6C8D8
+  "primary":#3F4B5B,
+  "secondary": #7180AC,
+  "dark": #232932
 );
 
-$small-font-size: 12px;
+$font-size-base:              0.90rem;

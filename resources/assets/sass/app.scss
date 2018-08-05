@@ -47,6 +47,25 @@
 }
 
 .post-meta {
-  font-size: $small-font-size;
   color:rgb(200,200,200) !important;
+}
+
+/** Show only hidden content on hover */
+.hide-section .hidden {
+  opacity: 0.0;
+  transition: 0.8s;
+}
+
+.hide-section:hover .hidden {
+  opacity: 1.0;
+  transition: 0.5s;
+}
+
+.btn-like {
+  transition: 1s;
+}
+
+.btn-like:hover {
+  transform: scale(1.2);
+  transition: 1s;
 }

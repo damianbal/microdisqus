@@ -16,17 +16,6 @@ class PostController extends Controller
         $this->postService = $postService;
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
-    {
-        //
-        $sort = $request->input('sort', 'recent'); // popular
-
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -62,6 +51,11 @@ class PostController extends Controller
 
         $post = $this->postService->addPost(Auth::user(), $tag, $data['content']);
 
+        // handle upload image if image is passed
+        $this->postService->setup($post);
+        $this->postService->handleImageUpload($request);
+        $this->postService->setup(null);
+
         return back();
     }
 
@@ -82,7 +76,7 @@ class PostController extends Controller
             $liked = $this->postService->liked(Auth::user());
         }
 
-        return view('posts.show', ['post' => $post, 'liked' => $liked, 'postService' => $this->postService]);
+        return view('posts.show', ['post' => $post, 'pid' => intval($post->id), 'liked' => $liked]);
     }
 
     /**

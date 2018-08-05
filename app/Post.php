@@ -12,7 +12,7 @@ class Post extends Model
      * @var array
      */
     protected $fillable = [
-        'content', 'tag_id', 'user_id', 'post_id'
+        'content', 'tag_id', 'user_id', 'post_id', 'comment', 'image'
     ];    
 
 

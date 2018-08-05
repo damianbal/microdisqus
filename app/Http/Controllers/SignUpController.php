@@ -23,6 +23,9 @@ class SignUpController extends Controller
 
         $data['password'] = Hash::make($data['password']);
 
+        // set avatar
+        $data['avatar'] = 'https://api.adorable.io/avatars/64/' . $data['name'] . 'png';
+
         $user = User::create($data);
 
         return redirect()->route('sign-in.show')->with('message', 'Your account has been created!');

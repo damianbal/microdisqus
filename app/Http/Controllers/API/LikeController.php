@@ -7,9 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Like;
 use App\Http\Resources\LikeResource;
 
-class LikesController extends Controller
+class LikeController extends Controller
 {
-    //
     public function recent() 
     {
         $r = Like::orderBy('created_at', 'DESC')->take(3)->get();

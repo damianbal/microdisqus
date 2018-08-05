@@ -22,7 +22,7 @@ class SignInController extends Controller
         if (Auth::attempt(['email' => $data['email'], 'password' => $data['password']])) {
             return redirect()->route('home')->with('message', 'You have been signed in!');
         } else {
-            return redirect()->route('home')->with('message', 'Incorrect email or password!');
+            return back()->with('message', 'Incorrect email or password!');
         }
     }
 
