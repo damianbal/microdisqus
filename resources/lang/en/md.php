@@ -16,5 +16,7 @@ return [
     'show_post' => 'Show post',
     'post' => 'Post',
     'joined' => 'Joined',
-    'posts' => 'Posts'
+    'posts' => 'Posts',
+    'popular_users' => 'Popular Users',
+    'profile' => 'Profile'
 ];

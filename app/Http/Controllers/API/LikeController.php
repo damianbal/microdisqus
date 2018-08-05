@@ -9,9 +9,9 @@ use App\Http\Resources\LikeResource;
 
 class LikeController extends Controller
 {
-    public function recent() 
+    public function recent(Request $request) 
     {
-        $r = Like::orderBy('created_at', 'DESC')->take(3)->get();
+        $r = Like::orderBy('created_at', 'DESC')->take($request->input('num', 3))->get();
 
         return LikeResource::collection($r);
     }

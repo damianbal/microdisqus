@@ -34,6 +34,8 @@
                             <a href="{{ route('sign-in.show') }}" class="nav-item nav-link">@lang('md.sign_in')</a> 
                             @endguest
                             @auth
+                            <a href="{{ route('users.show', [Auth::user()->id]) }}" class="nav-item nav-link">@lang('md.profile')</a>                           
+
                             <a href="{{ route('sign-out') }}" class="nav-item nav-link">@lang('md.sign_out') ({{ Auth::user()->name }})</a>                           
                              @endauth
                         </div>
@@ -84,12 +86,29 @@
                 </div>
                 <div class="col-lg-3">
                     @include('components.tags')
+                    @include('components.popular_users')
+                    <recent-likes></recent-likes>
                 </div>
             </div>
         </div>
     </div>
 
+    <footer class="container footer mt-3">
+        <div class="row">
+            <div class="small col-6">
+                MicroDisqus (&copy;) 2018
+            </div>
+            <div class="small col-6 text-sm-right">
+                Project: Damian Balandowski
+            </div>
+        </div>
+    </footer>
+
     <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+        $(function () {
+        })
+    </script>
 </body>
 
 </html>

@@ -22,6 +22,8 @@ class CreatePostsTable extends Migration
             $table->integer('tag_id');
             $table->integer('post_id')->default(0); // 0 means that it is a main post
             $table->boolean('comment')->default(false);
+            $table->boolean('reported')->default(false);
+            $table->integer('views')->default(0);
             $table->timestamps();
         });
     }
