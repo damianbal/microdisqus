@@ -2,6 +2,7 @@
     <div class="card bg-light mb-3">
         <div class="card-header">Recent Likes</div>
         <div class="card-body">
+            <div v-if="likes.length < 1">No likes</div>
         <transition-group name="fade">
             <div class="small mb-3" v-for="(like,idx) in likes" :key="idx">
                  <a :href="like.user_link">{{ like.user }}</a> liked {{ like.created_ago }} <br> <a :href="like.post_link">{{ like.post }}</a>

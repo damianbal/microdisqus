@@ -47728,6 +47728,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -47775,6 +47776,8 @@ var render = function() {
       "div",
       { staticClass: "card-body" },
       [
+        _vm.likes.length < 1 ? _c("div", [_vm._v("No likes")]) : _vm._e(),
+        _vm._v(" "),
         _c(
           "transition-group",
           { attrs: { name: "fade" } },

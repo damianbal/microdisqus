@@ -24,7 +24,7 @@ class SignUpController extends Controller
         $data['password'] = Hash::make($data['password']);
 
         // set avatar
-        $data['avatar'] = 'https://api.adorable.io/avatars/64/' . $data['name'] . 'png';
+        // $data['avatar'] = 'https://api.adorable.io/avatars/64/' . $data['name'] . 'png';
 
         $user = User::create($data);
 

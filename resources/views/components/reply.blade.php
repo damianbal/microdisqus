@@ -1,5 +1,8 @@
 <div class="row p-3">
-    <div class="col-sm-8">
+    <div class="col-sm-2 text-center">
+            <img height="48px" class="rounded" src="{{ asset('storage/' . $post->user->avatar) }}">
+        </div>
+    <div class="col-sm-7">
         <div class="small text-muted">
             <a href="{{ route('users.show', [$post->user->id]) }}">{{ $post->user->name }}</a>
         </div>
@@ -11,7 +14,7 @@
         @endif
     </div>
 
-    <div class="col-sm-4 text-sm-right">
+    <div class="col-sm-3  text-center">
         <div class="small text-muted">
             {{ $post->created_at->diffForHumans() }}
         </div>

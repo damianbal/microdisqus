@@ -93,7 +93,7 @@
         </div>
     </div>
 
-    <footer class="container footer mt-3">
+    <footer class="container footer mt-3 mb-3">
         <div class="row">
             <div class="small col-6">
                 MicroDisqus (&copy;) 2018
@@ -107,6 +107,7 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <script>
         $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
         })
     </script>
 </body>

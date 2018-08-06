@@ -30,7 +30,7 @@
         </div>
 
         <div class="col-2 text-sm-right">
-            <img height="48px" class="rounded" src="{{ $post->user->avatar }}">
+            <img height="48px" class="rounded" src="{{ asset('storage/' . $post->user->avatar) }}">
         </div>
     </div>
 </div>
