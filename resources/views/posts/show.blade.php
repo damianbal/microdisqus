@@ -12,7 +12,7 @@
         </div>
 
         <div class="col-sm-6 text-md-right">
-            {{ $post->created_at->diffForHumans() }} / Tag: {{ $post->tag->name }}
+            {{ $post->created_at->diffForHumans() }} / Tag: {{ $post->tag->name }} / @lang('md.views'): {{ $post->views }}
         </div>
     </div>
 

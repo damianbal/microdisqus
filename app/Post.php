@@ -45,4 +45,16 @@ class Post extends Model
     {
         return $this->belongsTo('App\Tag', 'tag_id');
     }
+
+    public function incrementViews()
+    {
+        $this->views = $this->views + 1;
+        $this->save();
+    }
+
+    public function report($v = true)
+    {
+        $this->reported = $v;
+        $this->save();
+    }
 }

@@ -67,6 +67,8 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        $post->incrementViews();
+
         $liked = false;
 
         // is it liked by signed in user?

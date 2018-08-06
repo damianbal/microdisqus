@@ -18,5 +18,6 @@ return [
     'joined' => 'Joined',
     'posts' => 'Posts',
     'popular_users' => 'Popular Users',
-    'profile' => 'Profile'
+    'profile' => 'Profile',
+    'views' => 'Views'
 ];
