@@ -9,7 +9,7 @@
         <div>{{ $post->content ?? '[Content]' }}</div>
         @if(isset($post->image))
         <div>
-            <img src="{{ asset('storage/' . $post->image) }}">
+            <img class="img-fluid" width="50%" src="{{ Storage::url($post->image) }}">
         </div>
         @endif
     </div>

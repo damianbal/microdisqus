@@ -27,6 +27,11 @@ class PostService
         }
     }
 
+    public function removeImageFromPost()
+    {
+        $this->post->image = null;
+        $this->post->save();
+    }
 
     /**
      * Create post, if post is set post is going to be created as sub post for $this->post

@@ -19,5 +19,7 @@ return [
     'posts' => 'Posts',
     'popular_users' => 'Popular Users',
     'profile' => 'Profile',
-    'views' => 'Views'
+    'views' => 'Views',
+    'no_posts' => 'No posts',
+    'admin' => 'Administrator'
 ];

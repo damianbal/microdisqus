@@ -2,9 +2,9 @@
 
 namespace App\Policies;
 
+use App\Post;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
-use App\Post;
 
 class PostPolicy
 {
@@ -20,8 +20,20 @@ class PostPolicy
         //
     }
 
-    public function update(User $user, Post $post) 
+    public function before($user)
+    {
+        if ($user->admin == true) {
+            return true;
+        }
+    }
+
+    public function update(User $user, Post $post)
     {
         return $user->id == $post->user_id;
+    }
+
+    public function destroy(User $user, Post $post)
+    {
+        return $user->admin == true;
     }
 }

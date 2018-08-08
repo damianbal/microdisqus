@@ -15,6 +15,12 @@ class UserService
         $this->user = $user;
     }
 
+    public function resetAvatar() 
+    {
+        $this->user->avatar = 'avatars/avatar.png';
+        $this->user->save();
+    }
+
     public function handleUpdateAvatar(Request $request) 
     {
         if($request->has('avatar')) {

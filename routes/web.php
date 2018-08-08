@@ -36,6 +36,9 @@ Route::post('/posts', 'PostController@store')->name('posts.store')->middleware('
 Route::get('/posts/{post}', 'PostController@show')->name('posts.show');
 Route::get('/posts/{post}/like', 'PostController@like')->name('posts.like')->middleware('auth');
 Route::get('/posts/{post}/unlike', 'PostController@unlike')->name('posts.unlike')->middleware('auth');
+Route::delete('/posts/{post}', 'PostController@destroy')->name('posts.destroy')->middleware('auth');
+Route::get('/posts/{post}/report', 'PostController@report')->name('posts.report')->middleware('auth');
+Route::post('/posts/{post}/remove_image', 'PostController@removeImage')->name('posts.remove_image')->middleware('auth');
 
 /**
  * ---------------------------------------

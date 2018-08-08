@@ -6,6 +6,36 @@
 
 @section('content')
 <div class="post mb-3 p-3">
+    @auth
+        @if(Auth::user()->admin)
+            <div class="row  bg-light p-2 border mb-3">
+                <div class="col-sm-12">
+                    <h3>Admin Tools</h3>
+                    <form method="POST" action="{{ route('posts.destroy', [$post]) }}">
+                        @method('DELETE')
+                        @csrf
+                        <button class="btn btn-outline-danger btn-sm">Remove</button>
+                    </form>
+
+                    <form method="POST" action="{{ route('posts.remove_image', [$post]) }}">
+                        @csrf 
+                        <button class="btn btn-outline-danger btn-sm">Remove image</button>
+                    </form>
+                </div>
+            </div>
+        @endif
+    @endauth
+
+    @auth
+        @if($post->reported == false)
+        <div class="row mb-3">
+            <div class="col-sm-12">
+            <a  class="btn btn-sm btn-outline-danger" href="{{ route('posts.report', [$post]) }}">Report</a>
+            </div>
+        </div>
+        @endif
+    @endauth
+
     <div class="post-meta small row text-muted font-weight-light">
         <div class="col-sm-6">
             @lang('md.author'): <a href="{{ route('users.show', [$post->user->id]) }}">{{ $post->user->name }}</a>
@@ -20,7 +50,8 @@
         {{ $post->content }}
         <br>
         <br> @if(isset($post->image))
-        <img class="img-fluid" src="{{ asset('storage/' . $post->image) }}"> @endif
+        {{-- <img width="300px" src="{{ asset('storage/' . $post->image) }}"> @endif --}}
+                 <img width="300px" src="{{ Storage::url($post->image) }}"> @endif  
         <br>
         <br>
 

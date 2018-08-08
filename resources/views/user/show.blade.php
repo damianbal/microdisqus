@@ -9,6 +9,10 @@
         <div class="col-sm-3 text-center">
                 <img class="img-fluid" src="{{ asset('storage/' . $user->avatar) }}"> 
 
+                @if($user->admin)
+                    <div class="text-danger"><i class="fas fa-star"></i> @lang('md.admin')</div>
+                @endif
+
                 @auth
                     @if(Auth::user()->id == $user->id)
                         <br>

@@ -19,10 +19,10 @@ class SignInController extends Controller
             'password' => 'required|min:3',
         ]);
 
-        if (Auth::attempt(['email' => $data['email'], 'password' => $data['password']])) {
+        if (Auth::attempt(['email' => $data['email'], 'password' => $data['password'], 'banned' => false])) {
             return redirect()->route('home')->with('message', 'You have been signed in!');
         } else {
-            return back()->with('message', 'Incorrect email or password!');
+            return back()->with('message', 'Incorrect email, password or account is blocked!');
         }
     }
 

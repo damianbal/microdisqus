@@ -113,6 +113,11 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         //
+        if(Auth::user()->can('destroy', $post)) {
+            $post->delete();
+        }
+        
+        return redirect()->route('home');
     }
 
     public function like(Post $post)
@@ -126,6 +131,23 @@ class PostController extends Controller
     {
         $this->postService->setup($post);
         $this->postService->unlike(Auth::user());
+        return back();
+    }
+
+    public function report(Post $post) 
+    {
+        $post->reported = true; 
+        $post->save();
+
+        return back()->with('message', 'Post reported!');
+    }
+
+    public function removeImage(Post $post) 
+    {
+        $this->postService->setup($post);
+        $this->postService->removeImageFromPost();
+        $this->postService->setup(null);
+
         return back();
     }
 }
