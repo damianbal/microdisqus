@@ -1,5 +1,5 @@
 @extends('layouts.master') 
-@section('title') {{ $title ?? '' }}
+@section('title') {!! $title ?? '' !!}
 @endsection
  
 @section('before-content') @if(isset($popular_link))

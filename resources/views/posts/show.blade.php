@@ -5,7 +5,7 @@
 
 
 @section('content')
-<div class="post mb-3 p-3">
+<div class="post mb-3 p-3 hide-section">
     @auth
         @if(Auth::user()->admin)
             <div class="row  bg-light p-2 border mb-3">
@@ -14,13 +14,19 @@
                     <form method="POST" action="{{ route('posts.destroy', [$post]) }}">
                         @method('DELETE')
                         @csrf
-                        <button class="btn btn-outline-danger btn-sm">Remove</button>
+                    <button class="btn btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i> @lang('md.remove')</button>
                     </form>
 
+                    @if($post->image)
                     <form method="POST" action="{{ route('posts.remove_image', [$post]) }}">
                         @csrf 
-                        <button class="btn btn-outline-danger btn-sm">Remove image</button>
+                        <button class="btn btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i> @lang('md.remove_image')</button>
                     </form>
+                    @endif
+
+                    @if($post->reported)
+                        <a href="{{ route('posts.unreport', $post) }}" class="btn btn-outline-info btn-sm"><i class="fas fa-flag"></i> @lang('md.unreport')</a>
+                    @endif
                 </div>
             </div>
         @endif
@@ -28,9 +34,9 @@
 
     @auth
         @if($post->reported == false)
-        <div class="row mb-3">
+        <div class="row mb-3 hidden">
             <div class="col-sm-12">
-            <a  class="btn btn-sm btn-outline-danger" href="{{ route('posts.report', [$post]) }}">Report</a>
+            <a  class="btn btn-sm btn-outline-danger" href="{{ route('posts.report', [$post]) }}"><i class="fas fa-flag"></i> @lang('md.report')</a>
             </div>
         </div>
         @endif
@@ -51,7 +57,7 @@
         <br>
         <br> @if(isset($post->image))
         {{-- <img width="300px" src="{{ asset('storage/' . $post->image) }}"> @endif --}}
-                 <img width="300px" src="{{ Storage::url($post->image) }}"> @endif  
+                <a href="{{ Storage::url($post->image) }}"> <img  width="300px" class="img-fluid" src="{{ Storage::url($post->image) }}"> </a> @endif  
         <br>
         <br>
 

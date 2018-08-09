@@ -34,7 +34,11 @@
                             <a href="{{ route('sign-in.show') }}" class="nav-item nav-link">@lang('md.sign_in')</a> 
                             @endguest
                             @auth
-                            <a href="{{ route('users.show', [Auth::user()->id]) }}" class="nav-item nav-link">@lang('md.profile')</a>                           
+                            <a href="{{ route('users.show', [Auth::user()->id]) }}" class="nav-item nav-link">@lang('md.profile')</a>     
+                            
+                            @if(Auth::user()->admin)
+                        <a href="{{ route('admin.reported_posts') }}" class="nav-item nav-link"><i class="fas fa-star"></i> @lang('md.reported_posts')</a>
+                            @endif
 
                             <a href="{{ route('sign-out') }}" class="nav-item nav-link">@lang('md.sign_out') ({{ Auth::user()->name }})</a>                           
                              @endauth

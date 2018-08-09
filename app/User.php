@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'avatar'
+        'name', 'email', 'password', 'avatar', 'admin'
     ];
 
     /**
@@ -29,6 +29,7 @@ class User extends Authenticatable
     ];
 
     /**
+     * Posts made by user
      * 
      */
     public function posts()
@@ -44,5 +45,16 @@ class User extends Authenticatable
     public function likes()
     {
         return $this->hasMany('App\Like', 'user_id');
+    }
+
+    /**
+     * Restore avatar to the default one
+     *
+     * @return void
+     */
+    public function restoreAvatar()
+    {
+        $this->avatar = "avatars/avatar.png";
+        $this->save();
     }
 }

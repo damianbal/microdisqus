@@ -38,6 +38,7 @@ Route::get('/posts/{post}/like', 'PostController@like')->name('posts.like')->mid
 Route::get('/posts/{post}/unlike', 'PostController@unlike')->name('posts.unlike')->middleware('auth');
 Route::delete('/posts/{post}', 'PostController@destroy')->name('posts.destroy')->middleware('auth');
 Route::get('/posts/{post}/report', 'PostController@report')->name('posts.report')->middleware('auth');
+Route::get('/posts/{post}/unreport', 'PostController@unreport')->name('posts.unreport')->middleware('auth');
 Route::post('/posts/{post}/remove_image', 'PostController@removeImage')->name('posts.remove_image')->middleware('auth');
 
 /**
@@ -55,3 +56,11 @@ Route::get('/tags/{tag}/popular', 'TagController@popular')->name('tags.popular')
  */
 Route::get('/users/{user}', 'UserController@show')->name('users.show');
 Route::post('/users/{user}/update', 'UserController@update')->name('users.update')->middleware('auth');
+Route::get('/users/{user}/restore_avatar', 'UserController@restoreAvatar')->name('users.restore_avatar')->middleware('auth');
+
+/**
+ * ---------------------------------------
+ * Admin
+ * ---------------------------------------
+ */
+Route::get('/admin/posts/reported', 'Admin\\ReportedPostsController@index')->name('admin.reported_posts')->middleware('auth');

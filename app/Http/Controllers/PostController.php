@@ -37,6 +37,7 @@ class PostController extends Controller
     {
         $data = $request->validate([
             'content' => 'min:3|required',
+            'image' => 'image'
         ]);
 
         $tag = $request->input('tag');
@@ -67,6 +68,11 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        // if it is a comment redirect to main post
+        if($post->comment) {
+            return redirect()->route('posts.show', [$post->post_id]);
+        }
+
         $post->incrementViews();
 
         $liked = false;
@@ -140,6 +146,17 @@ class PostController extends Controller
         $post->save();
 
         return back()->with('message', 'Post reported!');
+    }
+
+    public function unreport(Post $post)
+    {
+        if(!Auth::user()->admin) {
+            return back();
+        }
+
+        $post->reported = false; 
+        $post->save();
+        return back();
     }
 
     public function removeImage(Post $post) 

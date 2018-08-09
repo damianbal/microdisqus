@@ -5,8 +5,7 @@
         </div>
 
         <div class="col-sm-6 text-md-right ">
-            <a href="{{ route('tags', [$post->tag->id]) }}">{{ $post->tag->name }}</a> {{ $post->created_at->diffForHumans()
-            }}
+            <a href="{{ route('tags', [$post->tag->id]) }}">{{ $post->tag->name }}</a> {{ $post->created_at->diffForHumans() }}
             <br>
 
         </div>

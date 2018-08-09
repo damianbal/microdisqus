@@ -21,5 +21,11 @@ return [
     'profile' => 'Profile',
     'views' => 'Views',
     'no_posts' => 'No posts',
-    'admin' => 'Administrator'
+    'admin' => 'Administrator',
+    'restore_avatar' => 'Restore Avatar',
+    'remove' => 'Remove',
+    'remove_image' => 'Remove Image',
+    'report' => 'Report',
+    'unreport' => 'Unreport',
+    'reported_posts' => 'Reported Posts'
 ];
