@@ -1,5 +1,9 @@
 @extends('layouts.master') 
 
+@section('head.title')
+@lang('md.sign_up')
+@endsection
+
 @section('title')
 @lang('md.sign_up')
 @endsection

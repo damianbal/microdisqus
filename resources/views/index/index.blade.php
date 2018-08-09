@@ -1,7 +1,13 @@
 @extends('layouts.master') 
 @section('title') {!! $title ?? '' !!}
 @endsection
- 
+
+
+@section('head.title')
+{!! $title ?? '' !!}
+@endsection
+
+
 @section('before-content') @if(isset($popular_link))
 <nav class="nav">
     <a class="nav-link" href="{{ $popular_link ?? '' }}">@lang('md.popular')</a>

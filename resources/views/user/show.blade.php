@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('head.title')
+@lang('user.profile'): {{ $user->name ?? 'User' }}
+@endsection
+
 @section('title')
 @lang('user.profile'): {{ $user->name ?? 'User' }}
 @endsection

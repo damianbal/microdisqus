@@ -3,6 +3,10 @@
 @section('title') @lang('md.post')
 @endsection
 
+@section('head.title')
+    {{ substr($post->content, 0, 15) }}
+@endsection
+
 
 @section('content')
 <div class="post mb-3 p-3 hide-section">
